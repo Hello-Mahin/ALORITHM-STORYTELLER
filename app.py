@@ -1,4 +1,5 @@
 import streamlit as st
+from explain_function import explain_code
 
 # Set page config
 st.set_page_config(page_title="Algorithm Storyteller", layout="wide")
@@ -26,10 +27,13 @@ code_input = st.text_area(
     placeholder="Paste your code here and let the storyteller explain it..."
 )
 
-# Display selected language
+# Display selected language and explanation
 if code_input:
     st.info(f"Language Selected: **{selected_language}**")
     
-    # Placeholder for explanation (will be enhanced with AI)
+    # Call the explain_code function
+    explanation = explain_code(code_input, selected_language)
+    
+    # Display the explanation
     st.subheader("Code Explanation")
-    st.write("Explanation feature will be added with AI integration...")
+    st.markdown(explanation)
