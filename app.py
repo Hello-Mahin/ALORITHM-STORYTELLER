@@ -27,13 +27,14 @@ code_input = st.text_area(
     placeholder="Paste your code here and let the storyteller explain it..."
 )
 
-# Display selected language and explanation
-if code_input:
-    st.info(f"Language Selected: **{selected_language}**")
-    
-    # Call the explain_code function
-    explanation = explain_code(code_input, selected_language)
-    
-    # Display the explanation
-    st.subheader("Code Explanation")
-    st.markdown(explanation)
+# Create "Tell the Story" button
+if st.button("Tell the Story", key="explain_button"):
+    if code_input.strip():
+        # Call the explain_code function
+        explanation = explain_code(code_input, selected_language)
+        
+        # Display the explanation
+        st.subheader("📖 Code Explanation")
+        st.write(explanation)
+    else:
+        st.warning("Please paste some code first!")
